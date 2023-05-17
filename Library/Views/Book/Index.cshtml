@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Library.Models.Libro>
+
+@{
+    ViewData["Title"] = "Book";
+}
+
+
+<div class="row">
+    <div class="col-8">
+        <h2 class="text-primary text-primary">Books</h2>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">
+
+        <table id="tblBooks" class="table table-bordered table-striped table-hover">
+
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>synopsis</th>
+                    <th>number of pages</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>@book.Isbn</td>
+                        <td>@book.Titulo</td>
+                        <td>@book.Sipnosis</td>
+                        <td>@book.NPaginas</td>
+                        <td>
+                            <div class="text-center">
+                                <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Isbn" class="btn btn-success text-white" style="cursor:pointer; width:100px;">
+                                    Details
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $("#tblBooks").DataTable();
+        });
+    </script>
+}
